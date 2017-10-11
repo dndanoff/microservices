@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<logger name="org.springframework" level="INFO" />
+	<logger name="eu.dreamix" level="DEBUG" />
+
+	<!-- File appender Configuration -->
+	<appender name="FILE_SIZE_AND_TIME_BASED"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>team-mservice.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>team-mservice.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- GrayLog-Configuration -->
+	<!--<appender name="GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
+		<graylogHost>cell04-vj03-elk.jmstk.eu</graylogHost>
+		<graylogPort>12201</graylogPort>
+	</appender>-->
+
+	<root level="INFO">
+		<!--<appender-ref ref="GELF" />-->
+		<appender-ref ref="FILE_SIZE_AND_TIME_BASED" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>

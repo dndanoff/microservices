@@ -1,0 +1,9 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-mservice
+eureka:
+  client:
+    service-url:
+      defaultZone: ${eureka-url:http://localhost:8761/eureka/}

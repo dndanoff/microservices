@@ -1,0 +1,15 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: team-mservice
+  cloud:
+    config:
+      failFast: true
+      discovery:
+        enabled: true
+        service-id: config-mservice
+eureka:
+  client:
+    service-url:
+      defaultZone: ${eureka-url:http://localhost:8761/eureka/}

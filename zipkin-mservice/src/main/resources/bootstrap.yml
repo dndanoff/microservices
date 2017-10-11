@@ -1,0 +1,15 @@
+server:
+  port: 9411
+spring:
+  application:
+    name: zipkin-mservice
+  cloud:
+    config:
+      failFast: true
+      discovery:
+        enabled: true
+        service-id: config-mservice
+eureka:
+  client:
+    service-url:
+      defaultZone: ${eureka-url:http://localhost:8761/eureka/}
