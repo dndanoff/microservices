@@ -1,6 +1,6 @@
 ![](http://eventspro.bg/wp-content/uploads/2017/08/J2D_690x351psd-690x351.jpg)
 
-# Example cloud native app developped for java2days
+# Example cloud native app developed for java2days
 
 The application demonstrates microservice architecture that uses Spring Cloud and Netflix OSS components to achieve common patterns such as loadbalancing, high availability and etc.
 
