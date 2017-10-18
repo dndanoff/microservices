@@ -11,7 +11,7 @@
     <modules>
 		<module>discovery-mservice</module>
         <module>config-mservice</module>
-        <module>zipkin-service</module>
+        <module>zipkin-mservice</module>
 		<module>hystrix-dashboard-mservice</module>
 		<module>api-gateway-mservice</module>
 		<module>team-mservice</module>
