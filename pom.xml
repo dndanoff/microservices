@@ -15,5 +15,6 @@
 		<module>hystrix-dashboard-mservice</module>
 		<module>api-gateway-mservice</module>
 		<module>team-mservice</module>
+		<module>auth-mservice</module>
     </modules>
 </project>

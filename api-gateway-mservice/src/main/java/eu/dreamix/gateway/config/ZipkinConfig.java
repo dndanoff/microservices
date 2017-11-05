@@ -1,5 +1,7 @@
 package eu.dreamix.gateway.config;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.sleuth.metric.SpanMetricReporter;
@@ -16,6 +18,7 @@ import zipkin.Span;
 
 @Configuration
 public class ZipkinConfig {
+	
 	@Autowired
 	private EurekaClient eurekaClient;
 	@Autowired
@@ -34,9 +37,10 @@ public class ZipkinConfig {
 
 			@Override
 			public void report(Span span) {
-				InstanceInfo instance = eurekaClient.getNextServerFromEureka("zipkin-mservice", false);
-				if (!(baseUrl != null && instance.getHomePageUrl().equals(baseUrl))) {
-					baseUrl = instance.getHomePageUrl();
+
+				Optional<InstanceInfo> instance = getRegistredZipkingService();
+				if (instance.isPresent() && !(baseUrl != null && instance.get().getHomePageUrl().equals(baseUrl))) {
+					baseUrl = instance.get().getHomePageUrl();
 					delegate = new HttpZipkinSpanReporter(baseUrl, zipkinProperties.getFlushInterval(),
 							zipkinProperties.getCompression().isEnabled(), spanMetricReporter);
 					if (!span.name.matches(skipPattern)) {
@@ -45,5 +49,16 @@ public class ZipkinConfig {
 				}
 			}
 		};
+	}
+	
+	private Optional<InstanceInfo> getRegistredZipkingService() {
+		Optional<InstanceInfo> instance = Optional.empty();
+		try {
+			instance = Optional.of(eurekaClient.getNextServerFromEureka("zipkin-mservice", false));
+		} catch(RuntimeException ex) {
+			//swallow
+		}
+		
+		return instance;
 	}
 }

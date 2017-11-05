@@ -1,4 +1,4 @@
-package eu.dreamix.team.config;
+package eu.dreamix.auth.config;
 
 import java.util.Optional;
 
