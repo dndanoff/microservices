@@ -17,6 +17,7 @@ Spring Cloud and Netflix OSS
   -  Spring Retry
   -  Sleuth, Zipkin - for tracing requests
   -  Feign
+  -  OAuth2.0
 + Logback
 + Graylog
 + Swagger v_2.6.1 for testing and documentation purposes
