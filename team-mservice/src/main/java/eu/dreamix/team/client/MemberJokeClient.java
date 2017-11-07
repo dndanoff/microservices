@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import eu.dreamix.team.model.joke.Response;
 
-@FeignClient(name="jokeClient", url="https://api.icndb.com/jokes")
-public interface MemberJoke {
+@FeignClient(name="jokeClient", url="https://api.icndb.com/jokes", fallbackFactory = MemberJokeClientFallbackFactory.class)
+public interface MemberJokeClient {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/random", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Response> createJoke(@RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName);
